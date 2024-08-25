@@ -1,1 +1,1 @@
-# Learning DSA with C-Programming language
+# Learning Data Structure with C-Programming language
