@@ -6,6 +6,15 @@ struct Node {
     struct Node* next;
 };
 
+
+// Function to create a new node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+
 void printLinkedList(struct Node* ptr){
     struct Node* temp = ptr;
     while (temp != NULL)
@@ -15,13 +24,7 @@ void printLinkedList(struct Node* ptr){
     }
     
 }
-// Function to create a new node
-struct Node* createNode(int data) {
-    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
-    newNode->data = data;
-    newNode->next = NULL;
-    return newNode;
-}
+
 
 
 
