@@ -1,1 +1,1 @@
-# Learning Data Structure with C-Programming language
+# Learning Data Structure(DS) with C-Programming language
