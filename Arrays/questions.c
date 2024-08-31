@@ -3,13 +3,16 @@
 
 void findLargestSmallest(int arr[], int size);
 void mergeTwoSorted(int arr1[], int arr2[], int size1, int size2);
+int secondLargest(int arr[], int size);
 
 int main(){
-    int arr1[] = {34, 72, 13, 44, 25, 30, 10, 78, 66, 19};
+    int arr1[] = {34, 72, 13, 44, 25, 30, 10, 78, 66, 19, 100, 99};
     int arr2[] = {0, 72, 13, -1, 2, 3};
     int size1 = sizeof(arr1) / sizeof(arr1[0]);
-    int size2 = sizeof(arr2) / sizeof(arr2[0]);
-    mergeTwoSorted(arr1, arr2, size1, size2);
+    // int size2 = sizeof(arr2) / sizeof(arr2[0]);
+    // mergeTwoSorted(arr1, arr2, size1, size2);
+    printf("Second Largest : %d",secondLargest(arr1, size1));
+
     return 0;
 }
 
@@ -75,9 +78,31 @@ void mergeTwoSorted(int arr1[], int arr2[], int size1, int size2){
 Write a C program to merge two sorted arrays into a single sorted array.
 Find the Second Largest Element:
 
-Write a C program to find the second largest element in an array without sorting the array.
-Array Searching:
+*/
 
+// Write a C program to find the second largest element in an array without sorting the array.
+int secondLargest(int arr[], int size){
+    int track = 0;
+    for(int i = 0; i<size; i++){
+        if(arr[i] > track){
+            track = arr[i];
+        }
+    }
+    int count = 0;
+    for(int i = 0; i<size; i++){
+        if(arr[i] == track){
+            continue;
+        }else if(arr[i] > count){
+            count = arr[i];
+        }
+        
+    }
+    return count;
+}
+
+
+/*
+Array Searching:
 Implement a C function to search for a specific element in an array using binary search. (Assume the array is sorted)
 Finding Duplicates:
 
