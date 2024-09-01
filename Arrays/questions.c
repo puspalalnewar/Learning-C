@@ -4,14 +4,20 @@
 void findLargestSmallest(int arr[], int size);
 void mergeTwoSorted(int arr1[], int arr2[], int size1, int size2);
 int secondLargest(int arr[], int size);
+int binarySearch(int arr[], int size, int target);
+void reverseArr(int arr[], int size);
 
 int main(){
     int arr1[] = {34, 72, 13, 44, 25, 30, 10, 78, 66, 19, 100, 99};
     int arr2[] = {0, 72, 13, -1, 2, 3};
     int size1 = sizeof(arr1) / sizeof(arr1[0]);
-    // int size2 = sizeof(arr2) / sizeof(arr2[0]);
-    // mergeTwoSorted(arr1, arr2, size1, size2);
-    printf("Second Largest : %d",secondLargest(arr1, size1));
+    int size2 = sizeof(arr2) / sizeof(arr2[0]);
+    int arr[] = {1, 2, 3, 4, 5, 6};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    reverseArr(arr, size);
+    for(int i = 0; i<size;i++){
+        printf("%d ", arr[i]);
+    }
 
     return 0;
 }
@@ -39,10 +45,20 @@ void findLargestSmallest(int arr[], int size){
 Array Rotation:
 Write a C program to rotate an array of n elements to the right by k positions.
 Reversing an Array:
+*/
 
-Implement a function in C to reverse the elements of an array in place.
-Array Sorting:
+// Implement a function in C to reverse the elements of an array.
+void reverseArr(int arr[], int size){
+    int newArr[size];
+    for(int i = size-1, j = 0; i>=0 && j<size; i--, j++){
+        newArr[j] = arr[i];
+    }
+    for(int i = 0; i<size; i++){
+        arr[i] = newArr[i];
+    }
+}
 
+/*
 Write a C program to sort an array using the bubble sort algorithm.
 Merge Two Sorted Arrays:
 
@@ -101,11 +117,30 @@ int secondLargest(int arr[], int size){
 }
 
 
-/*
-Array Searching:
-Implement a C function to search for a specific element in an array using binary search. (Assume the array is sorted)
-Finding Duplicates:
 
+// Implement a C function to search for a specific element in an array using binary search. (Assume the array is sorted)
+
+int binarySearch(int arr[], int size, int target){
+    int mid = size / 2;
+    int left = 0;
+    int right = size-1;
+
+    while (left <= right){
+        if(arr[mid] == target){
+            return mid;
+        }else if(arr[mid] < target){
+            left = mid+1;
+        }else{
+            right = mid-1;
+        }
+    }
+    
+    return -1;
+}
+
+/*
+Array Se
+Finding Duplicates:
 Write a C program to find and print all duplicate elements in an array.
 Array Rotation Check:
 
