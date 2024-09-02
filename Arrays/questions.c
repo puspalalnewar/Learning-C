@@ -8,16 +8,10 @@ int binarySearch(int arr[], int size, int target);
 void reverseArr(int arr[], int size);
 
 int main(){
-    int arr1[] = {34, 72, 13, 44, 25, 30, 10, 78, 66, 19, 100, 99};
-    int arr2[] = {0, 72, 13, -1, 2, 3};
-    int size1 = sizeof(arr1) / sizeof(arr1[0]);
-    int size2 = sizeof(arr2) / sizeof(arr2[0]);
-    int arr[] = {1, 2, 3, 4, 5, 6};
+    int arr[] = {34, 72, 13, 44, 25, 30, 10, 78, 66, 19, 100, 99};
     int size = sizeof(arr) / sizeof(arr[0]);
-    reverseArr(arr, size);
-    for(int i = 0; i<size;i++){
-        printf("%d ", arr[i]);
-    }
+   
+    
 
     return 0;
 }
@@ -61,7 +55,6 @@ void reverseArr(int arr[], int size){
 /*
 Write a C program to sort an array using the bubble sort algorithm.
 Merge Two Sorted Arrays:
-
 */
 
 void mergeTwoSorted(int arr1[], int arr2[], int size1, int size2){
@@ -89,12 +82,6 @@ void mergeTwoSorted(int arr1[], int arr2[], int size1, int size2){
     }
 }
 
-/*
-
-Write a C program to merge two sorted arrays into a single sorted array.
-Find the Second Largest Element:
-
-*/
 
 // Write a C program to find the second largest element in an array without sorting the array.
 int secondLargest(int arr[], int size){
