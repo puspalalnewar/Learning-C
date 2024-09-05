@@ -5,3 +5,19 @@ an array is a collection of elements of the same type stored in contiguous memor
 int numbers[5] = {1, 2, 3, 4, 5};
 <br/>
 int numbers[5] = {1, 2}; // Equivalent to {1, 2, 0, 0, 0}
+#include <stdio.h>
+
+int main() {
+    int numbers[5] = {1, 2, 3, 4, 5};
+
+    // Print all elements of the array
+    for (int i = 0; i < 5; i++) {
+        printf("Element at index %d: %d\n", i, numbers[i]);
+    }
+
+    // Modify an element
+    numbers[2] = 10;
+    printf("Modified element at index 2: %d\n", numbers[2]);
+
+    return 0;
+}
