@@ -33,33 +33,25 @@ void printLinkedList(struct Node* head){
     
 }
 
-int main(){
-    // int i = 0; 
-    // while(i != '\n'){
-    //     createNode()
-    // }
+// Insert the node at the end of the node
+void insertAtEnd(struct Node** head, int data) {
+    struct Node* newNode = createNode(data);
+    if (*head == NULL) {
+        *head = newNode;
+        return;
+    }
     
-    // for(int i = 0; i<10; i++){
-    //     printf("Enter Your Data : ");
-    //     int data = scanf("%d", &data);
-    //     // struct Node* head = createNode(data);
-    //     insertAtBeg(&head, data);
-    //     printf("If You Want To Add Press 1.If You Don't Press 0 ");
-    //     int response = scanf("%d", &response);
-    //     if(response == 0){
-    //         break;
-    //     }
-    // }
-    // struct Node* head = createNode();
-    // insertAtBeg(&head, 5);
-    // insertAtBeg(&head, 2);
-    // insertAtBeg(&head, 5);
-    struct Node* head = createNode(5);
-    struct Node* second = createNode(4);
+    struct Node* temp = *head;
+    while (temp->next != NULL) {
+        temp = temp->next;
+    }
+    temp->next = newNode;
+}
 
-    head->next = second;
-    second ->next = NULL;
-    
+int main(){
+    struct Node *head = createNode(5);
+    insertAtEnd(&head, 45);
+    insertAtBeg(&head, 0);
     printLinkedList(head);
     return 0;
 }
