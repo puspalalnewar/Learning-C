@@ -50,8 +50,6 @@ void insertAtEnd(struct Node** head, int data) {
 
 int main(){
     struct Node *head = createNode(5);
-    insertAtEnd(&head, 45);
-    insertAtBeg(&head, 0);
-    printLinkedList(head);
+
     return 0;
 }
