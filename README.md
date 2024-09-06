@@ -1,7 +1,4 @@
 # Learning Data Structure(DS) with C-Programming language
-
-# Learning Data Structure(DS) with C-Programming language
-
 # Single and Multi-dimensional Arrays
 an array is a collection of elements of the same type stored in contiguous memory locations. A single array refers to a one-dimensional array, which is the simplest form of an array. It can hold multiple values but can be accessed by indexing through a single index.
 <br/>
