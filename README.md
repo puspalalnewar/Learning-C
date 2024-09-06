@@ -1,32 +1,50 @@
 # Learning Data Structure(DS) with C-Programming language
-# Arrays
-an array is a collection of elements of the same type stored in contiguous memory locations. Here’s a basic overview of how arrays work in C:
-<h3>Declaration of array</h3>
 
+# Single and Multi-dimensional Arrays
+an array is a collection of elements of the same type stored in contiguous memory locations. A single array refers to a one-dimensional array, which is the simplest form of an array. It can hold multiple values but can be accessed by indexing through a single index.
+<br/>
+<h3>Declaring and Initializing a Single-Dimensional Array<h3/>
+    
 ```c
-int main(){
-    int numbers[5] = {1, 2, 3, 4, 5};
-    int numbers[5] = {1, 2}; // Equivalent to {1, 2, 0, 0, 0};
-    return 0;
-}
+// Declaration of an array with a size of 5
+int arr[5];
+
+// Initialization (either at the time of declaration or separately)
+int arr[5] = {10, 20, 30, 40, 50}; // Array initialized with values
 ```
-# Using Loop
+<h3>Iterating Over an Array</h3>
 
 ```c
-#include<stdio.h>
-int main() {
-    int numbers[5] = {1, 2, 3, 4, 5};
+#include <stdio.h>
 
-    // Print all elements of the array
+int main() {
+    int arr[5] = {10, 20, 30, 40, 50};
+
     for (int i = 0; i < 5; i++) {
-        printf("Element at index %d: %d\n", i, numbers[i]);
+        printf("%d ", arr[i]);
     }
 
-    // Modify an element
-    numbers[2] = 10;
-    printf("Modified element at index 2: %d\n", numbers[2]);
-
     return 0;
 }
 ```
-<h2>LinkedList Declaration</h2>
+<h3>Key Points</h3>
+1.Fixed size: Once the size of an array is defined, it cannot be changed.
+<br/>
+2.Indexing starts at 0: The first element is accessed with index 0, the second with 1, and so on.
+<br/>
+3.Type consistency: All elements in the array must be of the same type (e.g., all integers, all floats).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
