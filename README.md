@@ -107,23 +107,68 @@ Consider a sparse matrix:<br/>
 <table border="1">
 <tr>
 <th>Row</th>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
 <th>Col</th>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
 <th>Value</th>
-</tr>
-<tr>
-<td>0</td>
-<td>2</td>
 <td>3</td>
-</tr>
-<tr>
-<td>1</td>
-<td>1</td>
 <td>4</td>
-</tr>
-<tr>
-<td>2</td>
-<td>0</td>
 <td>5</td>
 </tr>
 </table>
 </p>
+<p>&bull;The first column is the row index of the non-zero value.<br/>
+&bull;The second column is the column index of the non-zero value.<br/>
+&bull;The third column is the non-zero value itself.</p>
+
+<h2>C Code for Triplet Representation of a Sparse Matrix</h2>
+
+```c
+#include<stdio.h> 
+ int main() 
+{ 
+    // Assume 4x5 sparse matrix 
+    int sparseMatrix[4][5] = 
+    { 
+        {0 , 0 , 3 , 0 , 4 }, 
+        {0 , 0 , 5 , 7 , 0 }, 
+        {0 , 0 , 0 , 0 , 0 }, 
+        {0 , 2 , 6 , 0 , 0 } 
+    }; 
+  
+    int size = 0; 
+    for (int i = 0; i < 4; i++) 
+        for (int j = 0; j < 5; j++) 
+            if (sparseMatrix[i][j] != 0) 
+                size++; 
+     int compactMatrix[3][size]; 
+     // Making of new matrix 
+    int k = 0; 
+    for (int i = 0; i < 4; i++) 
+        for (int j = 0; j < 5; j++) 
+            if (sparseMatrix[i][j] != 0) 
+            { 
+                compactMatrix[0][k] = i; 
+                compactMatrix[1][k] = j; 
+                compactMatrix[2][k] = sparseMatrix[i][j]; 
+                k++; 
+            } 
+     for (int i=0; i<3; i++) 
+    { 
+        for (int j=0; j<size; j++) 
+            printf("%d ", compactMatrix[i][j]); 
+         printf("\n"); 
+    } 
+    return 0; 
+}```
+
+
+
