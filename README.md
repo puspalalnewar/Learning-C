@@ -77,3 +77,53 @@ int main() {
     return 0;
 }
 ```
+# Sparse Matrix Array Representation
+<p>The array representation of a sparse matrix is often used to store only non-zero elements efficiently, saving space and reducing unnecessary computations. A common way to represent a sparse matrix is through triplet form or COO (Coordinate) format, where you store only the non-zero values and their coordinates (row and column indices).</p>
+
+<h2>Triplet Representation (COO Format):</h2>
+<p>In this method, the sparse matrix is represented as a list of 3 elements (row, column, value) for each non-zero entry.</p>
+<h4>Example</h4>
+<p>
+Consider a sparse matrix:<br/>
+<table border="1">
+<tr>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td>0</td>
+<td>4</td>
+<td>0</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</table>
+<br/>
+<p>The array representation in triplet form would be:</p><br/>
+<table border="1">
+<tr>
+<th>Row</th>
+<th>Col</th>
+<th>Value</th>
+</tr>
+<tr>
+<td>0</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0</td>
+<td>5</td>
+</tr>
+</table>
+</p>
