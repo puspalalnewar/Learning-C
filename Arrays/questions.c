@@ -125,6 +125,8 @@ int binarySearch(int arr[], int size, int target){
     return -1;
 }
 
+// WAP to implement Diagonal Matrix using one-dimensional array.
+
 /*
 Array Se
 Finding Duplicates:
