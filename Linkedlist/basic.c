@@ -22,6 +22,24 @@ void insertAtBeg(struct Node** head, int data){
     *head = newNode;
 }
 
+void insertAtEnd(struct Node** head, int data){
+    // struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    // newNode ->data = data;
+    // newNode -> next = NULL;
+    struct Node* newNode = createNode(data);
+    struct Node* temp = *head;
+    
+    if(*head == NULL){
+        *head = newNode;
+        return;
+    }
+    while (temp -> next != NULL)
+    {
+        temp = temp->next;
+    }
+    temp->next = newNode;
+}
+
 void printLinkedList(struct Node* head){
     struct Node* temp = head;
     while (temp != NULL)
@@ -34,22 +52,26 @@ void printLinkedList(struct Node* head){
 }
 
 // Insert the node at the end of the node
-void insertAtEnd(struct Node** head, int data) {
-    struct Node* newNode = createNode(data);
-    if (*head == NULL) {
-        *head = newNode;
-        return;
-    }
+// void insertAtEnd(struct Node** head, int data) {
+//     struct Node* newNode = createNode(data);
+//     if (*head == NULL) {
+//         *head = newNode;
+//         return;
+//     }
     
-    struct Node* temp = *head;
-    while (temp->next != NULL) {
-        temp = temp->next;
-    }
-    temp->next = newNode;
-}
+//     struct Node* temp = *head;
+//     while (temp->next != NULL) {
+//         temp = temp->next;
+//     }
+//     temp->next = newNode;
+// }
 
 int main(){
-    struct Node *head = createNode(5);
-
+    struct Node *hi = createNode(5);
+    // printf("%d ->",hi->data);
+    // printf("NULL");
+    insertAtBeg(&hi, 1);
+    insertAtEnd(&hi, 10);
+    printLinkedList(hi);
     return 0;
 }
