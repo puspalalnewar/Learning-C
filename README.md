@@ -171,5 +171,136 @@ Consider a sparse matrix:<br/>
 }
 ```
 
+# Linked List in C
 
+A **Linked List** is a dynamic data structure that consists of a sequence of nodes. Each node stores data and a reference (or pointer) to the next node in the sequence.
+
+## Node Structure
+
+In C, the structure for a node in a singly linked list is defined as:
+
+```c
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Create Node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*) malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+```
+
+## Types of Linked Lists:
+
+<ol>
+<li>Singly Linked List: Each node points to the next node and the last node points to null.</li>
+<li>Doubly Linked List: Each node points to both the next and previous nodes.</li>
+<li>Circular Linked List: The last node points back to the first node, forming a circle.</li>
+</ol>
+
+## Operations
+
+### Insertion
+
+<h3>Insert at the Beginning</h3>
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+// Define the structure of a node
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Function to insert a node at the beginning of the list
+void insertAtBeginning(struct Node** head, int newData) {
+    struct Node* newNode = (struct Node*) malloc(sizeof(struct Node));
+    newNode->data = newData;
+    newNode->next = (*head);
+    (*head) = newNode;
+}
+
+// Function to insert a node at the end of the list
+void insertAtEnd(struct Node** head, int newData) {
+    struct Node* newNode = (struct Node*) malloc(sizeof(struct Node));
+    struct Node* last = *head;
+    newNode->data = newData;
+    newNode->next = NULL;
+
+    if (*head == NULL) {
+        *head = newNode;
+        return;
+    }
+
+    while (last->next != NULL)
+        last = last->next;
+
+    last->next = newNode;
+}
+
+// Insert any specific location
+void insertAtPosition(struct Node** head, int data, int position) {
+    struct Node* newNode = createNode(data);
+
+    // If inserting at the head (position 1)
+    if (position == 1) {
+        newNode->next = *head;
+        *head = newNode;
+        return;
+    }
+
+    // Traverse to the node before the desired position
+    struct Node* temp = *head;
+    for (int i = 1; temp != NULL && i < position - 1; i++) {
+        temp = temp->next;
+    }
+
+    // If the position is out of range
+    if (temp == NULL) {
+        printf("Position out of range\n");
+        return;
+    }
+
+    // Insert the new node at the position
+    newNode->next = temp->next;
+    temp->next = newNode;
+}
+
+// Function to print the linked list
+void printList(struct Node* node) {
+    while (node != NULL) {
+        printf("%d -> ", node->data);
+        node = node->next;
+    }
+    printf("NULL\n");
+}
+
+int main() {
+    struct Node* head = NULL;
+
+    // Insert nodes at the beginning
+    insertAtBeginning(&head, 3);
+    insertAtBeginning(&head, 2);
+    insertAtBeginning(&head, 1);
+    
+    printf("After inserting at the beginning:\n");
+    printList(head); // Linked List: 1 -> 2 -> 3 -> NULL
+
+    // Insert nodes at the end
+    insertAtEnd(&head, 4);
+    insertAtEnd(&head, 5);
+
+    printf("After inserting at the end:\n");
+    printList(head); // Linked List: 1 -> 2 -> 3 -> 4 -> 5 -> NULL
+
+    return 0;
+}
+
+```
 

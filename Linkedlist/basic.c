@@ -40,6 +40,34 @@ void insertAtEnd(struct Node** head, int data){
     temp->next = newNode;
 }
 
+// Insert any specific position
+void insertAtPosition(struct Node** head, int data, int position) {
+    struct Node* newNode = createNode(data);
+
+    // If inserting at the head (position 1)
+    if (position == 1) {
+        newNode->next = *head;
+        *head = newNode;
+        return;
+    }
+
+    // Traverse to the node before the desired position
+    struct Node* temp = *head;
+    for (int i = 1; temp != NULL && i < position - 1; i++) {
+        temp = temp->next;
+    }
+
+    // If the position is out of range
+    if (temp == NULL) {
+        printf("Position out of range\n");
+        return;
+    }
+
+    // Insert the new node at the position
+    newNode->next = temp->next;
+    temp->next = newNode;
+}
+
 void printLinkedList(struct Node* head){
     struct Node* temp = head;
     while (temp != NULL)
