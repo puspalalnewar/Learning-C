@@ -225,7 +225,19 @@ void insertAtBeginning(struct Node** head, int newData) {
     newNode->next = (*head);
     (*head) = newNode;
 }
+```
+<h3>Insert at the End</h3>
 
+```c
+
+#include <stdio.h>
+#include <stdlib.h>
+
+// Define the structure of a node
+struct Node {
+    int data;
+    struct Node* next;
+};
 // Function to insert a node at the end of the list
 void insertAtEnd(struct Node** head, int newData) {
     struct Node* newNode = (struct Node*) malloc(sizeof(struct Node));
@@ -244,6 +256,18 @@ void insertAtEnd(struct Node** head, int newData) {
     last->next = newNode;
 }
 
+```
+<h3>Insert at any specific location</h3>
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+// Define the structure of a node
+struct Node {
+    int data;
+    struct Node* next;
+};
 // Insert any specific location
 void insertAtPosition(struct Node** head, int data, int position) {
     struct Node* newNode = createNode(data);
