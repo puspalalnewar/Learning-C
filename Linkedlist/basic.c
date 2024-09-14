@@ -95,7 +95,7 @@ void printLinkedList(struct Node* head){
 // }
 
 int main(){
-    struct Node *hi = createNode(5);
+    struct Node *hi = NULL;
     // printf("%d ->",hi->data);
     // printf("NULL");
     insertAtBeg(&hi, 1);
