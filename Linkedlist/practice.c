@@ -39,7 +39,7 @@ void insertAtEnd(struct Node** head, int data){
 void printList(struct Node* head){
     struct Node* temp = head;
 
-    while(temp= NULL){
+    while(temp != NULL){
         printf("%d -> ", temp->data);
         temp = temp->next;
     }
@@ -49,12 +49,12 @@ void printList(struct Node* head){
 int main(){
     // struct Node* head= NULL;
     struct Node* head = createNode(5);
-    // insertAtBeginning(&head, 1);
-    // insertAtEnd(&head, 2);
-    // insertAtEnd(&head, 3);
-    // insertAtEnd(&head, 4);
-    // insertAtEnd(&head, 5);
-    printf("%d", head->data);
+    insertAtBeginning(&head, 1);
+    insertAtEnd(&head, 2);
+    insertAtEnd(&head, 3);
+    insertAtEnd(&head, 4);
+    insertAtEnd(&head, 5);
+    printList(head);
     
 
     return 0;
