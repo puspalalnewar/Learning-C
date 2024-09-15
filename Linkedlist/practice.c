@@ -14,48 +14,60 @@ struct Node* createNode(int data){
     return newNode;
 }
 
-// Insert At the beginning
-void insertAtBeginning(struct Node** head, int data){
+void insertBeg(struct Node** head, int data){
     struct Node* newNode = createNode(data);
-    newNode->next = *head;
+    newNode ->next = *head;
     *head = newNode;
 }
 
-void insertAtEnd(struct Node** head, int data){
+void insertEnd(struct Node** head, int data){
     struct Node* newNode = createNode(data);
     struct Node* temp = *head;
-
-    if(*head == NULL){
-        *head = newNode;
-        return;
-    }
-
-    while(temp->next != NULL){
-        temp = temp->next;
+    while(temp -> next != NULL){
+        temp = temp -> next;
     }
     temp->next = newNode;
 }
 
+void insertAnyPos(struct Node** head, int data, int position){
+    struct Node* newNode = createNode(data);
+    struct Node* temp = *head;
+
+    if (position == 1){
+        newNode ->next = *head;
+        *head = newNode;
+        return;
+    }
+    
+    
+    for(int i = 1; i<position-1 && temp != NULL; i++){
+        temp = temp -> next;
+    }
+    if(temp == NULL){
+        printf("Position out of range\n");
+        return;
+    }
+    newNode->next = temp ->next;
+    temp ->next = newNode;
+}
+
 void printList(struct Node* head){
     struct Node* temp = head;
-
-    while(temp != NULL){
+    while (temp != NULL)
+    {
         printf("%d -> ", temp->data);
         temp = temp->next;
     }
     printf("NULL");
+    
 }
 
 int main(){
-    // struct Node* head= NULL;
-    struct Node* head = createNode(5);
-    insertAtBeginning(&head, 1);
-    insertAtEnd(&head, 2);
-    insertAtEnd(&head, 3);
-    insertAtEnd(&head, 4);
-    insertAtEnd(&head, 5);
+    struct Node *head = NULL;
+    insertBeg(&head, 5);
+    insertBeg(&head, 1);
+    insertEnd(&head, 74);
+    insertAnyPos(&head, 20, 3);
     printList(head);
-    
-
     return 0;
 }
