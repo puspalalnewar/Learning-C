@@ -328,3 +328,138 @@ int main() {
 
 ```
 
+<h2>Linked List Deletion using C</h2>
+
+<p>Here is an example of how to delete a node from a singly linked list in C:</p>
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+// Define a node structure
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Function to create a new node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+
+// Function to print the linked list
+void printList(struct Node* head) {
+    struct Node* temp = head;
+    while (temp != NULL) {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+}
+
+// Function to delete a node from the beginning
+void deleteFromBeginning(struct Node** head) {
+    if (*head == NULL) {
+        printf("List is empty.\n");
+        return;
+    }
+    
+    struct Node* temp = *head;
+    *head = (*head)->next;
+    free(temp);
+}
+
+// Function to delete a node from the end
+void deleteFromEnd(struct Node** head) {
+    if (*head == NULL) {
+        printf("List is empty.\n");
+        return;
+    }
+    
+    struct Node* temp = *head;
+    
+    // If the list has only one node
+    if (temp->next == NULL) {
+        *head = NULL;
+        free(temp);
+        return;
+    }
+    
+    // Traverse to the second last node
+    while (temp->next->next != NULL) {
+        temp = temp->next;
+    }
+    
+    // Free the last node
+    free(temp->next);
+    temp->next = NULL;
+}
+
+// Function to delete a node from a specific position
+void deleteFromPosition(struct Node** head, int position) {
+    if (*head == NULL) {
+        printf("List is empty.\n");
+        return;
+    }
+    
+    struct Node* temp = *head;
+
+    // If deleting the head node
+    if (position == 1) {
+        *head = temp->next;
+        free(temp);
+        return;
+    }
+    
+    // Traverse to the node before the position
+    for (int i = 1; temp != NULL && i < position - 1; i++) {
+        temp = temp->next;
+    }
+    
+    // If the position is beyond the list length
+    if (temp == NULL || temp->next == NULL) {
+        printf("Position out of range.\n");
+        return;
+    }
+    
+    // Node to be deleted
+    struct Node* nodeToDelete = temp->next;
+    
+    // Change the next pointer of the previous node
+    temp->next = nodeToDelete->next;
+    
+    free(nodeToDelete);
+}
+
+int main() {
+    // Creating a simple linked list: 10 -> 20 -> 30 -> 40 -> NULL
+    struct Node* head = createNode(10);
+    head->next = createNode(20);
+    head->next->next = createNode(30);
+    head->next->next->next = createNode(40);
+    
+    printf("Original List:\n");
+    printList(head);
+    
+    // Deleting from the beginning
+    deleteFromBeginning(&head);
+    printf("After deleting from the beginning:\n");
+    printList(head);
+    
+    // Deleting from the end
+    deleteFromEnd(&head);
+    printf("After deleting from the end:\n");
+    printList(head);
+    
+    // Deleting from position 2
+    deleteFromPosition(&head, 2);
+    printf("After deleting from position 2:\n");
+    printList(head);
+    
+    return 0;
+}
+
+
