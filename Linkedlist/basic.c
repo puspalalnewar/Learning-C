@@ -93,6 +93,27 @@ void deleteFromBeg(struct Node** head){
 
 }
 
+// Function to delete a node from the end
+void deleteFromEnd(struct Node** head){
+    if(*head == NULL){
+        printf("LinkedList is empty.\n");
+        return;
+    }
+    struct Node* temp = *head;
+    // Only one node
+    if(temp->next == NULL){
+        *head == NULL;
+        free(temp);
+        return;
+    }
+    while (temp->next->next != NULL){
+        temp = temp->next;
+    }
+    free(temp->next);
+    temp->next = NULL;
+    
+}
+
 
 
 int main(){
@@ -101,10 +122,10 @@ int main(){
     insertAtBeg(&head, 1);
     insertAtEnd(&head, 10);
     insertAtPosition(&head, 0, 1);
-    // deleteFromBeg(&head);
-    // printLinkedList(head);
+    deleteFromBeg(&head);
+    deleteFromEnd(&head);
+    printLinkedList(head);
 
-    printf("%d", head->next);
 
     return 0;
 }
