@@ -1,3 +1,5 @@
-# Ignore all .exe and .txt extensions
+# Ignore all .exe and 
 *.exe
+
+# Ignore all .txt extensions
 *.txt
