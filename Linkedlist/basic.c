@@ -71,6 +71,10 @@ void insertAtPosition(struct Node** head, int data, int position) {
 
 // Print List
 void printLinkedList(struct Node* head){
+    if(head == NULL){
+        printf("LinkedList Is Empty");
+        return;
+    }
     struct Node* temp = head;
     while (temp != NULL)
     {
@@ -114,6 +118,32 @@ void deleteFromEnd(struct Node** head){
     
 }
 
+// Function to delete from any position
+void deleteFromPosition(struct Node** head, int position){
+    if(*head == NULL){
+        printf("LinkedList is empty.\n");
+        return;
+    }
+    struct Node* temp = *head;
+    // Only one node
+    if(position == 1){
+        *head = temp -> next;
+        free(temp);
+        return;
+    }
+    for(int i = 1; temp != NULL && i < position-1; i++){
+        temp = temp->next;
+    }
+    if(temp == NULL || temp -> next == NULL){
+        printf("Position Out Of bound\n");
+        return;
+    }
+    struct Node* nodeToDelete = temp->next;
+    temp->next = nodeToDelete->next;
+    free(nodeToDelete);
+    
+}
+
 
 
 int main(){
@@ -124,8 +154,8 @@ int main(){
     insertAtPosition(&head, 0, 1);
     deleteFromBeg(&head);
     deleteFromEnd(&head);
+    deleteFromPosition(&head, 1);
     printLinkedList(head);
-
 
     return 0;
 }
