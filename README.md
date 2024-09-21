@@ -462,4 +462,120 @@ int main() {
     return 0;
 }
 
+```
 
+
+<h2>Doubly Linked List in C</h2>
+
+<p>A <strong>doubly linked list</strong> is a type of linked list in which each node contains a data part and two pointers. One pointer points to the previous node, and the other points to the next node in the sequence. This allows traversal of the list in both directions.</p>
+
+<pre><code>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+// Define the structure of a node in a doubly linked list
+struct Node {
+    int data;
+    struct Node* prev;
+    struct Node* next;
+};
+
+// Function to create a new node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode-&gt;data = data;
+    newNode-&gt;prev = NULL;
+    newNode-&gt;next = NULL;
+    return newNode;
+}
+
+// Function to insert a node at the beginning of the list
+void insertAtBeginning(struct Node** head, int data) {
+    struct Node* newNode = createNode(data);
+    if (*head == NULL) {
+        *head = newNode;
+        return;
+    }
+    newNode-&gt;next = *head;
+    (*head)-&gt;prev = newNode;
+    *head = newNode;
+}
+
+// Function to insert a node at the end of the list
+void insertAtEnd(struct Node** head, int data) {
+    struct Node* newNode = createNode(data);
+    if (*head == NULL) {
+        *head = newNode;
+        return;
+    }
+    struct Node* temp = *head;
+    while (temp-&gt;next != NULL) {
+        temp = temp-&gt;next;
+    }
+    temp-&gt;next = newNode;
+    newNode-&gt;prev = temp;
+}
+
+// Function to display the list forward
+void displayForward(struct Node* head) {
+    struct Node* temp = head;
+    while (temp != NULL) {
+        printf("%d ", temp-&gt;data);
+        temp = temp-&gt;next;
+    }
+    printf("\n");
+}
+
+// Function to display the list backward
+void displayBackward(struct Node* head) {
+    struct Node* temp = head;
+    if (temp == NULL) return;
+
+    // Move to the last node
+    while (temp-&gt;next != NULL) {
+        temp = temp-&gt;next;
+    }
+
+    // Print in reverse
+    while (temp != NULL) {
+        printf("%d ", temp-&gt;data);
+        temp = temp-&gt;prev;
+    }
+    printf("\n");
+}
+
+// Main function to demonstrate the doubly linked list
+int main() {
+    struct Node* head = NULL;
+
+    insertAtEnd(&head, 10);
+    insertAtEnd(&head, 20);
+    insertAtEnd(&head, 30);
+    insertAtBeginning(&head, 5);
+
+    printf("List displayed forward: ");
+    displayForward(head);
+
+    printf("List displayed backward: ");
+    displayBackward(head);
+
+    return 0;
+}
+
+</code></pre>
+
+<p>Explanation:</p>
+<ul>
+    <li><strong>struct Node</strong>: Defines the structure of a doubly linked list node with <code>data</code>, <code>prev</code> (pointer to the previous node), and <code>next</code> (pointer to the next node).</li>
+    <li><strong>createNode</strong>: Allocates memory for a new node and initializes it with the given data.</li>
+    <li><strong>insertAtBeginning</strong>: Inserts a node at the start of the list.</li>
+    <li><strong>insertAtEnd</strong>: Inserts a node at the end of the list.</li>
+    <li><strong>displayForward</strong>: Prints the list starting from the head and traversing forward.</li>
+    <li><strong>displayBackward</strong>: Prints the list from the last node to the head (traversing backward).</li>
+</ul>
+
+<p><strong>Sample Output:</strong></p>
+<pre><code>
+List displayed forward: 5 10 20 30 
+List displayed backward: 30 20 10 5
+</code></pre>
