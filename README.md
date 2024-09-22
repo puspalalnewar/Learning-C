@@ -470,6 +470,7 @@ int main() {
 <p>A <strong>doubly linked list</strong> is a type of linked list in which each node contains a data part and two pointers. One pointer points to the previous node, and the other points to the next node in the sequence. This allows traversal of the list in both directions.</p>
 
 <pre><code>
+
 #include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 
@@ -579,3 +580,95 @@ int main() {
 List displayed forward: 5 10 20 30 
 List displayed backward: 30 20 10 5
 </code></pre>
+
+
+<h2>Basic Stack Implementation using Arrays in C</h2>
+
+<p>A stack is a linear data structure that follows the Last In First Out (LIFO) principle, meaning the last element added is the first one to be removed.</p>
+
+<h3>Key Operations of Stack:</h3>
+<ul>
+  <li><strong>Push:</strong> Add an element to the top of the stack.</li>
+  <li><strong>Pop:</strong> Remove and return the top element of the stack.</li>
+  <li><strong>Peek (Top):</strong> Retrieve the top element without removing it.</li>
+  <li><strong>isEmpty:</strong> Check if the stack is empty.</li>
+  <li><strong>isFull:</strong> Check if the stack is full.</li>
+</ul>
+
+<h3>Example: Stack Implementation using Array</h3>
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX 5  // Define the maximum size of the stack
+
+// Stack structure
+struct Stack {
+    int arr[MAX];  // Array to hold the elements
+    int top;       // Variable to track the top of the stack
+};
+
+// Function to initialize the stack
+void initStack(struct Stack* stack) {
+    stack->top = -1;  // Initialize top to -1 to represent an empty stack
+}
+
+// Function to check if the stack is full
+int isFull(struct Stack* stack) {
+    return stack->top == MAX - 1;
+}
+
+// Function to check if the stack is empty
+int isEmpty(struct Stack* stack) {
+    return stack->top == -1;
+}
+
+// Function to add an element to the stack
+void push(struct Stack* stack, int value) {
+    if (isFull(stack)) {
+        printf("Stack overflow! Cannot push %d\n", value);
+        return;
+    }
+    stack->arr[++stack->top] = value;
+    printf("Pushed %d to the stack\n", value);
+}
+
+// Function to remove an element from the stack
+int pop(struct Stack* stack) {
+    if (isEmpty(stack)) {
+        printf("Stack underflow! Cannot pop\n");
+        return -1;
+    }
+    int poppedValue = stack->arr[stack->top--];
+    printf("Popped %d from the stack\n", poppedValue);
+    return poppedValue;
+}
+
+// Function to return the top element of the stack without removing it
+int peek(struct Stack* stack) {
+    if (isEmpty(stack)) {
+        printf("Stack is empty! No top element\n");
+        return -1;
+    }
+    return stack->arr[stack->top];
+}
+
+// Main function to demonstrate stack operations
+int main() {
+    struct Stack myStack;
+    initStack(&myStack);
+
+    push(&myStack, 10);
+    push(&myStack, 20);
+    push(&myStack, 30);
+
+    printf("Top element is: %d\n", peek(&myStack));
+
+    pop(&myStack);
+    pop(&myStack);
+
+    printf("Top element is: %d\n", peek(&myStack));
+
+    return 0;
+}
