@@ -582,7 +582,7 @@ List displayed backward: 30 20 10 5
 </code></pre>
 
 
-<h2>Basic Stack Implementation using Arrays in C</h2>
+<h1>Basic Stack Implementation using Arrays in C</h1>
 
 <p>A stack is a linear data structure that follows the Last In First Out (LIFO) principle, meaning the last element added is the first one to be removed.</p>
 
@@ -672,3 +672,88 @@ int main() {
 
     return 0;
 }
+
+```
+
+## Stack Implementation using Linked List in C
+
+In this approach, a stack is implemented dynamically using linked lists, where each element (node) contains a pointer to the next element.
+
+### Key Operations of Stack:
+1. **Push**: Add a new node at the top of the stack.
+2. **Pop**: Remove the node from the top of the stack.
+3. **Peek (Top)**: Retrieve the value of the top node without removing it.
+4. **isEmpty**: Check if the stack is empty.
+
+### Example: Stack Implementation using Linked List
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+// Define the structure of a node
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Function to check if the stack is empty
+int isEmpty(struct Node* top) {
+    return top == NULL;
+}
+
+// Function to push an element onto the stack
+void push(struct Node** top, int value) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    if (!newNode) {
+        printf("Stack overflow! Cannot push %d\n", value);
+        return;
+    }
+    newNode->data = value;
+    newNode->next = *top;  // Link new node with current top
+    *top = newNode;        // Update top to new node
+    printf("Pushed %d to the stack\n", value);
+}
+
+// Function to pop an element from the stack
+int pop(struct Node** top) {
+    if (isEmpty(*top)) {
+        printf("Stack underflow! Cannot pop\n");
+        return -1;
+    }
+    struct Node* temp = *top;
+    int poppedValue = temp->data;
+    *top = (*top)->next;  // Move top to the next node
+    free(temp);           // Free the popped node
+    printf("Popped %d from the stack\n", poppedValue);
+    return poppedValue;
+}
+
+// Function to return the top element without removing it
+int peek(struct Node* top) {
+    if (isEmpty(top)) {
+        printf("Stack is empty! No top element\n");
+        return -1;
+    }
+    return top->data;
+}
+
+// Main function to demonstrate stack operations
+int main() {
+    struct Node* top = NULL;  // Initialize an empty stack
+
+    push(&top, 10);
+    push(&top, 20);
+    push(&top, 30);
+
+    printf("Top element is: %d\n", peek(top));
+
+    pop(&top);
+    pop(&top);
+
+    printf("Top element is: %d\n", peek(top));
+
+    return 0;
+}
+
+```
