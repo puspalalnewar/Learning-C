@@ -757,3 +757,78 @@ int main() {
 }
 
 ```
+
+# Queue 
+## Implementation using Arrays in C
+
+
+### Queue Operations in C:
+- **Enqueue:** Adds an element to the rear of the queue.
+- **Dequeue:** Removes an element from the front of the queue.
+- **Front:** The front pointer that keeps track of the first element in the queue.
+- **Rear:** The rear pointer that keeps track of where to insert the next element.
+
+<img src = "https://media.geeksforgeeks.org/wp-content/cdn-uploads/20221213113312/Queue-Data-Structures.png" />
+
+### C Code:
+
+```c
+#include <stdio.h>
+#define SIZE 5
+
+int queue[SIZE];
+int front = -1;
+int rear = -1;
+
+// Enqueue operation
+void enqueue(int value) {
+    if (rear == SIZE - 1) {
+        printf("Queue is full\n");
+    } else {
+        if (front == -1)
+            front = 0;  // Initialize front to 0 if inserting the first element
+        rear++;
+        queue[rear] = value;
+        printf("Inserted %d\n", value);
+    }
+}
+
+// Dequeue operation
+void dequeue() {
+    if (front == -1) {
+        printf("Queue is empty\n");
+    } else {
+        printf("Deleted %d\n", queue[front]);
+        front++;
+        if (front > rear) {  // Reset the queue if it becomes empty
+            front = rear = -1;
+        }
+    }
+}
+
+// Display the queue
+void display() {
+    if (front == -1) {
+        printf("Queue is empty\n");
+    } else {
+        printf("Queue elements are: ");
+        for (int i = front; i <= rear; i++)
+            printf("%d ", queue[i]);
+        printf("\n");
+    }
+}
+
+int main() {
+    enqueue(10);
+    enqueue(20);
+    enqueue(30);
+    display();
+    dequeue();
+    display();
+    return 0;
+}
+
+```
+
+
+
