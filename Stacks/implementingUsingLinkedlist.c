@@ -20,6 +20,17 @@ void push(struct Node** top, int value){
     printf("Pushed %d to the stack\n", value);
 }
 
+int pop(struct Node** top){
+    if(*top == NULL){
+        printf("Linkedlist is empty");
+        return -1;
+    }
+    struct Node* temp = *top;
+    *top = (*top)->next;
+    free(temp);
+    printf("Popped %d from stack\n", temp->data);
+    return temp->data;
+}
 
 int main(){
     struct Node* top = NULL;
