@@ -25,7 +25,7 @@ void insertAtBeg(struct Node** head, int data){
 
 void printLL(struct Node* head){
     struct Node* temp = head;
-    while (temp!=NULL)
+    while (temp != NULL)
     {
         printf("%d -> ", temp->data);
         temp = temp->next;
